@@ -16,5 +16,12 @@ Default values are defined in the `values.yaml`
 ### Upgrade/Changes
 `helm upgrade nginx-lb helm-lb-txt`
 
+Example to change from GUI to plain-text (and vice versa) nginx demo
+
+```
+helm upgrade nginx-lb . --set image.tag=latest
+helm upgrade nginx-lb . --set image.tag=plain-text
+```
+
 ### Un-installation
 `helm uninstall nginx-lb`
