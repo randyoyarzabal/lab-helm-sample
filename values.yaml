@@ -1,0 +1,20 @@
+
+replicaCount: 2
+
+image: 
+  repository: docker.io/nginxdemos/hello
+  pullPolicy: IfNotPresent
+  tag: plain-text
+
+serviceAccount:
+  create: true
+  name: nginx-helm-sa
+  scc: system:openshift:scc:anyuid
+
+service:
+  type: ClusterIP
+  port: 80
+
+route:
+  host: hello-text-helm-demo.apps.ocp.reolab.us
+
