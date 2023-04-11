@@ -1,0 +1,25 @@
+# Reference: https://docs.openshift.com/container-platform/4.11/networking/metallb/about-advertising-ipaddresspool.html#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool
+# Contains example pool and l2 advertisement
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  namespace: metallb-system
+  name: doc-example-l2-label
+  labels:
+    zone: east
+spec:
+  addresses:
+    - 172.31.249.87/32
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: l2advertisement-label
+  namespace: metallb-system
+spec:
+  ipAddressPoolSelectors:
+    - matchExpressions:
+        - key: zone
+          operator: In
+          values:
+            - east
